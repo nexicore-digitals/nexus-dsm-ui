@@ -1,146 +1,151 @@
-# 🚀 Nexus DSM User Interface
+# 🚀 Nexus DSM UI – Desktop Client
 
-> A modern, secure, and cross-platform desktop user interface for managing Nexus-DSM services. Built using Rust (Tauri) for native performance and a fast web frontend.
+[![Nexicore](https://img.shields.io/badge/Org-Nexicore%20Digitals-gold?style=flat&logo=github&logoColor=white)](https://github.com/nexicore-digitals) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Cross-Platform](https://img.shields.io/badge/platform-win%20%7C%20mac%20%7C%20linux-lightgrey) ![Nexi Inside](https://img.shields.io/badge/Nexi-AI-blue)  
 
-[![GitHub Profile](https://img.shields.io/badge/Owen-Developer-195?style=flat&logo=github&logoColor=white&color=blue)](https://github.com/owen-6936)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub last commit](https://img.shields.io/github/last-commit/owen-6936/nexus-dsm-ui/main?color=green)](https://github.com/owen-6936/nexus-dsm-ui/commits/main)
+> A **modern cross-platform desktop app** for managing datasets with [**Nexus DSM Toolkit**](https://github.com/nexicore-digitals/nexus-dsm-toolkit).  
+> Built with **Wails (Go + WebView)** for the shell, and **React + TypeScript** for the UI.
 
 ---
 
-## 💡 Overview
+## 🌐 Part of the Nexicore Ecosystem
 
-This application serves as a dedicated desktop client for interacting with the Nexus-DSM (Digital Service Management) system. By utilizing the **Tauri framework**, we achieve a native look-and-feel, lightning-fast performance, and a minimal application size, significantly surpassing the overhead of typical Electron applications.
+This project belongs to [**Nexicore Digitals**](https://github.com/nexicore-digitals) — modular developer tools for clarity, control, and confidence.
 
-**Why Tauri?**
-* **Small Footprint:** Uses the system's native WebView instead of bundling a full browser.
-* **Security:** Leverages Rust's memory safety and Tauri's security-focused IPC layer.
-* **Cross-Platform:** Single codebase for Windows, macOS, and Linux.
+- 🧩 **Backend Core** → [`nexus-dsm-toolkit`](https://github.com/nexicore-digitals/nexus-dsm-toolkit)  
+- 💻 **Frontend UI** → `nexus-dsm-ui` (this repo)  
+- 🤖 **Nexi Agent** → AI assistant for validation & automation (planned)  
 
-## 💻 Tech Stack
+---
 
-This project is a hybrid application, utilizing the best parts of the web and native desktop technologies.
+## ✨ Features
 
-| Component | Technology | Role |
-| :--- | :--- | :--- |
-| **Backend / Core** | **Rust** 🦀 | Handles low-level system calls, security, and high-performance logic. |
-| **Frontend UI** | **Vanilla JavaScript / TypeScript** | The interactive user interface, leveraging popular web tools. |
-| **Desktop Framework** | **Tauri** | Bridges the web frontend and the Rust native backend. |
-| **Package Management**| **npm / Yarn / pnpm** | Manages frontend dependencies and scripts. |
+- 📂 Import CSV/JSON datasets with drag-and-drop  
+- ✅ Validate schema with explainable feedback (powered by toolkit)  
+- 🔁 Convert between CSV ↔ JSON seamlessly  
+- 🧾 Dual modes:  
+  - **General Mode** → quick workflows  
+  - **Dev Mode** → transparent validation reports  
+- ⚡ Lightweight: native shell with web frontend (no Electron bloat)  
+- 🔮 Future: AI assistant (**Nexi**) for guided validation  
+
+---
+
+## ⚡ Tech Stack
+
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=go,ts,react,tailwind,html,css,githubactions" />
+</p>
+
+| Layer            | Technology                | Role                                  |
+|------------------|---------------------------|---------------------------------------|
+| **Desktop Shell** | Wails (Go) 🐹             | Provides native desktop wrapper        |
+| **Frontend**     | React + TypeScript ⚛️     | User interface + validation dashboard |
+| **Styling**      | Tailwind CSS 🎨           | Modern and responsive UI              |
+| **Data Logic**   | Nexus DSM Toolkit 📦      | Parsing, validation, conversion       |
+| **Automation**   | GitHub Actions ⚙️         | CI/CD builds                          |
 
 ---
 
 ## 🛠️ Installation & Setup
 
-Before starting development, ensure you have the necessary prerequisites installed.
-
 ### Prerequisites
 
-1.  **Node.js**: Version 16 or higher.
-2.  **Rust**: Install the latest stable version of Rust and Cargo via [rustup](https://rustup.rs/).
-3.  **Tauri CLI Dependencies**: Depending on your operating system (Windows, macOS, or Linux), you may need specific dependencies. Consult the [Tauri Setup Guide](https://tauri.app/v1/guides/getting-started/prerequisites) for details.
+- **Go**: >= 1.21 ([Install Go](https://go.dev/dl/))  
+- **Node.js**: >= 18 ([Install Node](https://nodejs.org))  
+- **Wails CLI**:  
 
-### Local Development
-
-1.  **Clone the Repository**
-    ```bash
-    git clone [https://github.com/owen-6936/nexus-dsm-ui.git](https://github.com/owen-6936/nexus-dsm-ui.git)
-    cd nexus-dsm-ui
-    ```
-
-2.  **Install Dependencies**
-    ```bash
-    # Install frontend (JavaScript) dependencies
-    npm install
-    ```
-
-3.  **Start Development**
-    This command runs both the frontend dev server and the Tauri Rust process, allowing for hot-reloading of your web assets.
-
-    ```bash
-    npm run tauri dev
-    ```
+```bash
+go install github.com/wailsapp/wails/v2/cmd/wails@latest
+````
 
 ---
 
-## ⚙️ Project Structure (Theoretically)
-
-Understanding the separation of concerns is key in a Tauri project.
-
-````
-
-nexus-dsm-ui/
-├── src/                    \# The Web Frontend (JavaScript/HTML/CSS)
-│   ├── index.html          \# Entry point for the WebView
-│   └── main.ts             \# The main Typescript logic
-├── src-tauri/              \# The Rust Backend & Native Logic
-│   ├── Cargo.toml          \# Rust dependencies and project config
-│   ├── tauri.conf.json     \# Tauri app configuration (window, commands, etc.)
-│   └── src/                \# Rust source code
-│       └── main.rs         \# The main Rust application entry point
-├── package.json            \# Frontend scripts and dependencies
-├── tsconfig.json           \# Typecript configuration 
-└── README.md
-
-````
-
-### 🤝 Rust-to-JS Communication (The Core Concept)
-
-Tauri's magic is the secure connection between the two parts. You expose Rust functions as **Commands** that your JavaScript can safely call via `invoke`.
-
-**Example:**
-In **`src-tauri/src/main.rs`** (Rust)
-```rust
-// 1. Define the command in Rust
-#[tauri::command]
-fn greet(name: &str) -> String {
-    format!("Hello, {}! This is a secure native call from Rust.", name)
-}
-````
-
-In **`src/main.js`** (JavaScript)
-
-```javascript
-// 2. Call the command from JavaScript
-import { invoke } from '@tauri-apps/api/tauri'
-
-async function callRustGreeting() {
-  const message = await invoke('greet', { name: 'Owen' });
-  console.log(message); // Output: "Hello, Owen! This is a secure native call from Rust."
-}
-```
-
------
-
-## 📦 Building & Distribution
-
-To create a final, production-ready desktop application, use the build command:
+### Development Setup
 
 ```bash
-npm run tauri build
+# Clone repository
+git clone https://github.com/nexicore-digitals/nexus-dsm-ui.git
+cd nexus-dsm-ui
+
+# Install frontend dependencies
+npm install
+
+# Run dev mode (Go backend + React frontend with hot reload)
+wails dev
 ```
 
-The compiled application installers (e.g., `.exe`, `.dmg`, `.deb`) will be located in the **`src-tauri/target/release/bundle`** directory.
+---
 
------
+### Build Production App
 
-## 📝 Future Roadmap
+```bash
+wails build
+```
 
-  * [ ] Implement a robust state management solution for the frontend.
-  * [ ] Create a dedicated Rust command for reading/writing configuration files.
-  * [ ] Design the main "DSM Dashboard" view.
-  * [ ] Integrate the native notification system using the Tauri API.
+Output binaries/installers will appear in `build/bin/`.
 
------
+---
+
+## 📂 Project Structure
+
+```text
+nexus-dsm-ui/
+├── frontend/              # React + TypeScript + Tailwind UI
+│   ├── src/
+│   │   ├── components/    # Reusable UI components
+│   │   ├── views/         # Pages (Dashboard, Schema, Settings)
+│   │   └── main.tsx       # App entry
+│   └── index.html
+├── build/                 # Compiled frontend + app binaries
+├── go.mod                 # Go dependencies
+├── main.go                # Wails entrypoint (Go shell)
+├── wails.json             # Wails config
+└── README.md
+```
+
+---
+
+## 🔌 UI ↔ Toolkit Integration
+
+The UI imports functions directly from **`nexus-dsm-toolkit`** (TypeScript).
+
+Example usage in frontend:
+
+```ts
+import { parseCSV, convertToJSON } from "nexus-dsm-toolkit";
+
+async function handleFile(file: File) {
+  const parsed = await parseCSV(await file.text());
+  const json = convertToJSON(parsed);
+  console.log("Converted JSON:", json);
+}
+```
+
+---
+
+## 📝 Roadmap
+
+* [ ] File drag-and-drop support
+* [ ] Integrated validation dashboard
+* [ ] General vs Dev modes
+* [ ] Nexi AI assistant integration
+* [ ] Cross-platform packaging & auto-updates
+
+---
 
 ## 📜 License
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE).
 
------
+---
 
 ## 🙏 Acknowledgments
 
-  * The incredible [Tauri Framework](https://tauri.app/) team.
-  * [Rust Community](https://www.rust-lang.org/) for the secure foundation.
-  * [Vanilla JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) for keeping the web fast and flexible.
+* [Wails](https://wails.io/) – Native desktop framework
+* [React](https://react.dev/) – Frontend library
+* [Nexus DSM Toolkit](https://github.com/nexicore-digitals/nexus-dsm-toolkit) – Core data logic
+* [Nexicore Digitals](https://github.com/nexicore-digitals) – Parent org
+
+---
+
+🔥 *Nexus DSM UI is proudly part of the Nexicore Digitals ecosystem — modular tools for clarity, control, and confidence.*
