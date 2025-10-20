@@ -2,7 +2,7 @@
 
 [![Nexicore](https://img.shields.io/badge/Org-Nexicore%20Digitals-gold?style=flat&logo=github&logoColor=white)](https://github.com/nexicore-digitals)
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/nexicore-digitals/nexus-dsm-ui/actions)
+[![CI Status](https://github.com/nexicore-digitals/nexus-dsm-ui/actions/workflows/ci.yml/badge.svg)](https://github.com/nexicore-digitals/nexus-dsm-ui/actions/workflows/ci.yml)
 [![Platform](https://img.shields.io/badge/platform-web-lightgrey)](https://github.com/nexicore-digitals/nexus-dsm-ui)
 ![Husky](https://img.shields.io/badge/commit--hooks-husky-blueviolet)
 ![Lint Staged](https://img.shields.io/badge/formatting-lint--staged-green)
