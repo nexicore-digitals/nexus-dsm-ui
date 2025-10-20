@@ -1,9 +1,14 @@
-# 🚀 Nexus DSM UI – Desktop Client
+# 🚀 Nexus DSM UI
 
-[![Nexicore](https://img.shields.io/badge/Org-Nexicore%20Digitals-gold?style=flat&logo=github&logoColor=white)](https://github.com/nexicore-digitals) [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Cross-Platform](https://img.shields.io/badge/platform-win%20%7C%20mac%20%7C%20linux-lightgrey) ![Nexi Inside](https://img.shields.io/badge/Nexi-AI-blue)  
+[![Nexicore](https://img.shields.io/badge/Org-Nexicore%20Digitals-gold?style=flat&logo=github&logoColor=white)](https://github.com/nexicore-digitals)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/nexicore-digitals/nexus-dsm-ui/actions)
+[![Platform](https://img.shields.io/badge/platform-web-lightgrey)](https://github.com/nexicore-digitals/nexus-dsm-ui)
+![Nexi Inside](https://img.shields.io/badge/Nexi-AI-blue)
 
-> A **modern cross-platform desktop app** for managing datasets with [**Nexus DSM Toolkit**](https://github.com/nexicore-digitals/nexus-dsm-toolkit).  
-> Built with **Wails (Go + WebView)** for the shell, and **React + TypeScript** for the UI.
+> A **modern web app** for managing datasets with the [**Nexus DSM Toolkit**](https://github.com/nexicore-digitals/nexus-dsm-toolkit).  
+> Built with **SvelteKit** and **Tailwind CSS**.
+> An open-source, web-accessible data editor and toolkit designed for flexibility and extensibility. Inspired by the VS Code interface, it provides a clutter-free, developer-focused environment for data set management (DSM).
 
 ---
 
@@ -11,38 +16,37 @@
 
 This project belongs to [**Nexicore Digitals**](https://github.com/nexicore-digitals) — modular developer tools for clarity, control, and confidence.
 
-- 🧩 **Backend Core** → [`nexus-dsm-toolkit`](https://github.com/nexicore-digitals/nexus-dsm-toolkit)  
-- 💻 **Frontend UI** → `nexus-dsm-ui` (this repo)  
-- 🤖 **Nexi Agent** → AI assistant for validation & automation (planned)  
+- 🧩 **Core Logic** → A future home for the core data processing logic.
+- 💻 **Frontend UI** → `nexus-dsm-ui` (this repo)
+- 🤖 **Nexi Agent** → AI assistant for validation & automation (planned)
 
 ---
 
 ## ✨ Features
 
-- 📂 Import CSV/JSON datasets with drag-and-drop  
-- ✅ Validate schema with explainable feedback (powered by toolkit)  
-- 🔁 Convert between CSV ↔ JSON seamlessly  
-- 🧾 Dual modes:  
-  - **General Mode** → quick workflows  
-  - **Dev Mode** → transparent validation reports  
-- ⚡ Lightweight: native shell with web frontend (no Electron bloat)  
-- 🔮 Future: AI assistant (**Nexi**) for guided validation  
+- **Extensible Plugin Architecture**: Customize and extend the editor with a powerful plugin system.
+- **Multiple Data Views**: Switch between a Table View and a Text Editor View.
+- **VS Code Inspired UI**: Familiar and intuitive layout with an Activity Bar, Sidebar, and a validation output terminal.
+- **Rich Data Support**: Natively handle CSV, JSON, and TSV, with support for custom parsers.
+- **Schema-Aware**: Features schema validation, semantic data validation, and intelligent error highlighting.
+- **Data Operations**: Perform data indexing, metadata management, and transformations.
 
 ---
 
 ## ⚡ Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=go,ts,react,tailwind,html,css,githubactions" />
+  <img alt="Tech Stack Icons" src="https://skillicons.dev/icons?i=svelte,ts,tailwind,vite,pnpm,nodejs,githubactions" />
 </p>
 
-| Layer            | Technology                | Role                                  |
-|------------------|---------------------------|---------------------------------------|
-| **Desktop Shell** | Wails (Go) 🐹             | Provides native desktop wrapper        |
-| **Frontend**     | React + TypeScript ⚛️     | User interface + validation dashboard |
-| **Styling**      | Tailwind CSS 🎨           | Modern and responsive UI              |
-| **Data Logic**   | Nexus DSM Toolkit 📦      | Parsing, validation, conversion       |
-| **Automation**   | GitHub Actions ⚙️         | CI/CD builds                          |
+| Layer            | Technology                | Role                                     |
+|------------------|---------------------------|------------------------------------------|
+| **Framework**    | SvelteKit 🧡              | The web app framework                    |
+| **Frontend**     | Svelte + TypeScript       | User interface + validation dashboard    |
+| **Styling**      | Tailwind CSS 🎨           | Modern and responsive UI                 |
+| **Build Tool**   | Vite ⚡                    | Next-generation frontend tooling         |
+| **Package Manager**| pnpm 📦                   | Fast, disk space-efficient package manager|
+| **Automation**   | GitHub Actions ⚙️         | CI/CD builds                             |
 
 ---
 
@@ -50,28 +54,23 @@ This project belongs to [**Nexicore Digitals**](https://github.com/nexicore-digi
 
 ### Prerequisites
 
-- **Go**: >= 1.21 ([Install Go](https://go.dev/dl/))  
-- **Node.js**: >= 18 ([Install Node](https://nodejs.org))  
-- **Wails CLI**:  
-
-```bash
-go install github.com/wailsapp/wails/v2/cmd/wails@latest
-````
+- **Node.js**: `^22` (Install Node)
+- **pnpm**: `npm install -g pnpm`
 
 ---
 
 ### Development Setup
 
 ```bash
-# Clone repository
+# 1. Clone repository
 git clone https://github.com/nexicore-digitals/nexus-dsm-ui.git
 cd nexus-dsm-ui
 
-# Install frontend dependencies
-npm install
+# 2. Install dependencies
+pnpm install
 
-# Run dev mode (Go backend + React frontend with hot reload)
-wails dev
+# 3. Run the development server
+pnpm dev -- --open
 ```
 
 ---
@@ -90,17 +89,17 @@ Output binaries/installers will appear in `build/bin/`.
 
 ```text
 nexus-dsm-ui/
-├── frontend/              # React + TypeScript + Tailwind UI
-│   ├── src/
-│   │   ├── components/    # Reusable UI components
-│   │   ├── views/         # Pages (Dashboard, Schema, Settings)
-│   │   └── main.tsx       # App entry
-│   └── index.html
-├── build/                 # Compiled frontend + app binaries
-├── go.mod                 # Go dependencies
-├── main.go                # Wails entrypoint (Go shell)
-├── wails.json             # Wails config
-└── README.md
+src/
+├── lib/                # App components, stores, and utilities
+│   ├── components/
+│   └── ...
+├── routes/             # SvelteKit pages and API endpoints
+└── app.html            # Main HTML shell
+static/                # Static assets (images, fonts)
+svelte.config.js      # SvelteKit configuration
+vite.config.ts         # Vite configuration
+package.json
+
 ```
 
 ---
@@ -125,11 +124,11 @@ async function handleFile(file: File) {
 
 ## 📝 Roadmap
 
-* [ ] File drag-and-drop support
-* [ ] Integrated validation dashboard
-* [ ] General vs Dev modes
-* [ ] Nexi AI assistant integration
-* [ ] Cross-platform packaging & auto-updates
+- [ ] File drag-and-drop support
+- [ ] Integrated validation dashboard
+- [ ] General vs Dev modes
+- [ ] Nexi AI assistant integration
+- [ ] Cross-platform packaging & auto-updates
 
 ---
 
@@ -141,10 +140,11 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE).
 
 ## 🙏 Acknowledgments
 
-* [Wails](https://wails.io/) – Native desktop framework
-* [React](https://react.dev/) – Frontend library
-* [Nexus DSM Toolkit](https://github.com/nexicore-digitals/nexus-dsm-toolkit) – Core data logic
-* [Nexicore Digitals](https://github.com/nexicore-digitals) – Parent org
+- [SvelteKit](https://kit.svelte.dev/) – Web app framework
+- [Tailwind CSS](https://tailwindcss.com/) – Styling framework
+- [Vite](https://vitejs.dev/) – Build tool
+- [Nexus DSM Toolkit](https://github.com/nexicore-digitals/nexus-dsm-toolkit) – Core data logic
+- [Nexicore Digitals](https://github.com/nexicore-digitals) – Parent org
 
 ---
 
