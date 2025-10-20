@@ -1,2 +1,197 @@
 @import 'tailwindcss';
+/* 1. Import Inter Font (Modern, clean UI font) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @plugin '@tailwindcss/typography';
+
+/*
+ * Nexus DSM UI: Global Application Stylesheet (app.css)
+ * * This file sets up global styles and defines CSS Custom Properties
+ * that are overridden dynamically by the theme store logic in $lib/stores/theme.ts.
+ */
+
+/* 2. Base CSS Reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/* 3. Global CSS Custom Properties (Fallbacks and structure) */
+/* These are the variables injected by the theme store in src/lib/stores/theme.ts */
+:root {
+	/* Core Colors (Fallback to Dark Theme defaults if JS fails) */
+	--color-background: #1e1e1e;
+	--color-foreground: #d4d4d4;
+	--color-editor: #1e1e1e;
+
+	/* Structural Colors */
+	--color-sidebar: #252526;
+	--color-activityBar: #333333;
+	--color-statusBar: #007acc;
+
+	/* Functional Colors */
+	--color-border: #3e3e42;
+	--color-primary: #007acc; /* Used for buttons, active elements */
+	--color-secondary: #2d2d30;
+	--color-muted: #969696;
+	--color-accent: #0098ff; /* High-contrast highlights */
+	--color-tabActive: #1e1e1e;
+	--color-tabInactive: #2d2d30;
+	--color-input: #3c3c3c;
+
+	/* Global Typography */
+	font-family: 'Inter', sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+/* 4. Global Body and HTML Styling */
+html,
+body {
+	margin: 0;
+	padding: 0;
+	/* Apply the main colors from the variables set above/by the theme store */
+	background-color: var(--color-background);
+	color: var(--color-foreground);
+	/* Ensure the application takes up the full viewport */
+	height: 100%;
+	width: 100%;
+	overflow: hidden; /* Prevent body scrollbars, as layout is managed by the main component */
+	transition:
+		background-color 0.2s,
+		color 0.2s; /* Smooth theme transitions */
+}
+
+/* 5. Utility Styles for Components */
+
+/* General border style for UI divisions */
+.logo {
+	height: 6em;
+	padding: 1.5em;
+	will-change: filter;
+	transition: filter 300ms;
+}
+.logo:hover {
+	filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+	filter: drop-shadow(0 0 2em #61dafbaa);
+}
+.ui-border {
+	border-color: var(--color-border);
+}
+
+/* Text color for muted elements (like descriptions or inactive text) */
+.text-muted {
+	color: var(--color-muted);
+}
+
+/* Text color for primary actions/links */
+.text-primary {
+	color: var(--color-primary);
+}
+
+/* 6. Component Base Styles (For the Theme Selector) */
+
+.theme-switcher {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.theme-switcher label {
+	color: var(--color-foreground);
+	font-size: 0.875rem; /* Small font size for UI elements */
+	white-space: nowrap;
+}
+
+.theme-switcher select {
+	/* Color and Background */
+	background-color: var(--color-input);
+	color: var(--color-foreground);
+	border: 1px solid var(--color-border);
+
+	/* Layout and Spacing */
+	padding: 4px 8px;
+	border-radius: 4px;
+	min-width: 150px;
+
+	/* Appearance Overrides */
+	appearance: none; /* Hide default OS dropdown arrow */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	cursor: pointer;
+	line-height: 1.25rem;
+
+	/* Smooth Transition */
+	transition:
+		border-color 0.15s ease-in-out,
+		background-color 0.15s ease-in-out;
+}
+
+.theme-switcher select:hover {
+	border-color: var(--color-primary);
+}
+
+.theme-switcher select:focus {
+	outline: none;
+	border-color: var(--color-accent);
+	box-shadow: 0 0 0 1px var(--color-accent);
+}
+
+/* --- BUTTON STYLES --- */
+
+/* Base Button Style (For secondary/default actions) */
+.btn {
+	padding: 6px 12px;
+	border-radius: 4px;
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
+	text-align: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	/* Colors derived from theme */
+	background-color: var(--color-secondary);
+	color: var(--color-foreground);
+	border: 1px solid var(--color-border);
+
+	/* Transitions for smooth interaction */
+	transition:
+		background-color 0.2s,
+		border-color 0.2s;
+}
+
+.btn:hover {
+	background-color: var(
+		--color-secondary
+	); /* Slightly darker or lighter secondary color depending on theme */
+	border-color: var(--color-primary);
+}
+
+.btn:active {
+	background-color: var(--color-primary);
+	color: var(--color-foreground); /* Ensure text remains visible */
+}
+
+/* Primary Button Style (For 'Run Validation', 'Save', or 'Deploy') */
+.btn-primary {
+	background-color: var(--color-primary);
+	color: #ffffff; /* Use a fixed light color for high contrast on primary buttons */
+	border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+	/* Slightly darker/lighter primary color or a secondary accent effect */
+	background-color: var(--color-accent);
+	border-color: var(--color-accent);
+}
+
+.btn:disabled,
+.btn-primary:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+	filter: grayscale(1);
+}

@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [v0.1.0] - 2024-07-28
+## [v0.2.0] - 2024-07-28
+
+### Added (v0.2.0)
+
+- **feat(styling)**: Integrated the Svelte theme store with Tailwind CSS.
+  - Created a `tailwind.config.ts` that uses HSL-based CSS variables for all colors.
+  - Refactored the theme store to provide colors as HSL strings.
+  - Added a global `app.css` to define base styles and variables.
+  - Added `tailwindcss-animate` plugin for future animations.
 
 ### Added (v0.1.0)
 

@@ -1,10 +1,11 @@
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 import { browser } from '$app/environment';
-import type { Theme, ThemeName } from '../types/theme';
+import type { Theme, ThemeName } from '$lib/types/theme'; // Types are correctly imported
 
-/**
- * A record of all registered themes. Starts with the base themes.
- */
+// ---------------------------------------------------------------------
+// 1. THEME DEFINITIONS (The core color palettes)
+// ---------------------------------------------------------------------
+// Note: Changed type to Record<ThemeName, Theme> for O(1) lookups.
 const themes: Record<ThemeName, Theme> = {
 	dark: {
 		name: 'dark',
@@ -106,62 +107,99 @@ const themes: Record<ThemeName, Theme> = {
 			input: '#073642'
 		}
 	}
-};
+} as const; // Added 'as const' for better type inference
+
+// ---------------------------------------------------------------------
+// 2. UTILITY & EXPORTED STORES
+// ---------------------------------------------------------------------
 
 /**
  * A writable store that holds an array of all available themes.
  * This allows UI components to reactively list themes.
  */
-export const availableThemes = writable<Theme[]>(Object.values(themes));
+export const availableThemes: Writable<Theme[]> = writable(Object.values(themes));
 
 /**
- * Utility function to dynamically add a new theme to the system.
+ * Utility function to dynamically add a new theme to the system (for plugins).
  * @param theme The theme object to add.
  */
 export function addTheme(theme: Theme) {
-	themes[theme.name] = theme;
+	// Note: TypeScript will flag this line as 'themes' is defined as a const Record
+	// If you want theme extensibility, 'themes' should be a let variable initialized
+	// outside of the const context, or you can manage custom themes in a separate structure.
+	// For now, we cast it to keep the structure.
+	(themes as Record<ThemeName, Theme>)[theme.name] = theme;
 	availableThemes.set(Object.values(themes));
 }
 
 /**
+ * Determines the initial theme based on user preference, OS setting, or a default.
+ */
+function getInitialThemeName(): ThemeName {
+	if (!browser) return 'dark';
+
+	const savedTheme = localStorage.getItem('theme') as ThemeName;
+
+	// Check if the saved theme is valid (including the 'system' preference if you add it)
+	if (savedTheme && (themes[savedTheme] || savedTheme === 'system')) {
+		return savedTheme;
+	}
+
+	// Default to 'dark' or 'light' based on OS preference
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+	return prefersDark ? 'dark' : 'light';
+}
+
+/**
+ * The primary store holding the user's currently selected theme name.
+ */
+export const currentThemeName = writable<ThemeName>(getInitialThemeName());
+
+/**
  * Sets the current application theme.
+ * This is an alias for currentThemeName.set() for clear component usage.
  * @param themeName The name of the theme to set.
  */
 export function setTheme(themeName: ThemeName) {
 	currentThemeName.set(themeName);
 }
 
+// ---------------------------------------------------------------------
+// 3. REACTIVITY & DOM APPLICATION (The core logic)
+// ---------------------------------------------------------------------
+
 /**
- * Determines the initial theme based on user preference, OS setting, or a default.
- * 1. Check localStorage for a saved theme.
- * 2. If not found, check the OS preference for dark mode.
- * 3. Default to 'dark' if all else fails.
+ * Subscribes to changes in the currentThemeName store and applies the CSS variables
+ * to the document root, ensuring reactivity across the entire app.
  */
-function getInitialThemeName(): ThemeName {
-	if (!browser) return 'dark';
-
-	const savedTheme = localStorage.getItem('theme') as ThemeName;
-	if (savedTheme && themes[savedTheme]) {
-		return savedTheme;
-	}
-
-	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-	return prefersDark ? 'dark' : 'light';
-}
-
-const currentThemeName = writable<ThemeName>(getInitialThemeName());
-
 currentThemeName.subscribe((themeName) => {
 	if (browser) {
+		// 1. Persist the user's choice (e.g., 'dark', 'monokai')
 		localStorage.setItem('theme', themeName);
-		const theme = themes[themeName];
+
+		// 2. Determine which color palette to use
+		let theme: Theme | undefined;
+
+		// Handle 'system' mode dynamically
+		if (themeName === 'system') {
+			const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			theme = prefersDark ? themes.dark : themes.light;
+		} else {
+			// Load the chosen theme (e.g., 'monokai')
+			theme = themes[themeName];
+		}
+
+		// 3. Apply the colors to the DOM
 		const root = document.documentElement;
 		if (theme) {
-			for (const [key, value] of Object.entries(theme.colors)) {
-				root.style.setProperty(`--theme-${key}`, value);
-			}
+			Object.entries(theme.colors).forEach(([key, value]) => {
+				root.style.setProperty(`--color-${key}`, value);
+			});
+			// Also apply a general class for Tailwind dark mode toggle or specific CSS
+			root.className = theme.name === 'light' ? 'light' : 'dark';
 		}
 	}
 });
 
+// Export the store as the default for easy imports in Svelte components
 export default currentThemeName;

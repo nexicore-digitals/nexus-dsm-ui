@@ -1,7 +1,7 @@
 {
 	"name": "nexus-dsm-ui",
 	"private": true,
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"type": "module",
 	"license": "MIT",
 	"author": "Owen • Nexicore digitals",
@@ -109,6 +109,7 @@
 		"svelte-check": "^4.3.2",
 		"tailwindcss": "^4.1.13",
 		"typescript": "^5.9.2",
+		"tailwindcss-animate": "^1.0.7",
 		"typescript-eslint": "^8.44.1",
 		"vite": "^7.1.7",
 		"vitest": "^3.2.4",
