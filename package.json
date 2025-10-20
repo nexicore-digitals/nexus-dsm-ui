@@ -1,7 +1,7 @@
 {
 	"name": "nexus-dsm-ui",
 	"private": true,
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"type": "module",
 	"license": "MIT",
 	"author": "Owen • Nexicore digitals",
