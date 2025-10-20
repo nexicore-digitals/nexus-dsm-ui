@@ -7,7 +7,7 @@ on:
         branches: ["main"]
 
 jobs:
-    build_and_test:
+    checks_and_test:
         runs-on: ubuntu-latest
 
         steps:
@@ -43,6 +43,7 @@ jobs:
 
             - name: Run checks and tests
               run: |
+                  pnpm format
                   pnpm lint
                   pnpm check
                   pnpm test
