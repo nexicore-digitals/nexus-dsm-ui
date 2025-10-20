@@ -4,6 +4,8 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/nexicore-digitals/nexus-dsm-ui/actions)
 [![Platform](https://img.shields.io/badge/platform-web-lightgrey)](https://github.com/nexicore-digitals/nexus-dsm-ui)
+![Husky](https://img.shields.io/badge/commit--hooks-husky-blueviolet)
+![Lint Staged](https://img.shields.io/badge/formatting-lint--staged-green)
 ![Nexi Inside](https://img.shields.io/badge/Nexi-AI-blue)
 
 > A **modern web app** for managing datasets with the [**Nexus DSM Toolkit**](https://github.com/nexicore-digitals/nexus-dsm-toolkit).  
