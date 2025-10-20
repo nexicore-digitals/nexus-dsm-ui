@@ -39,14 +39,14 @@ This project belongs to [**Nexicore Digitals**](https://github.com/nexicore-digi
   <img alt="Tech Stack Icons" src="https://skillicons.dev/icons?i=svelte,ts,tailwind,vite,pnpm,nodejs,githubactions" />
 </p>
 
-| Layer            | Technology                | Role                                     |
-|------------------|---------------------------|------------------------------------------|
-| **Framework**    | SvelteKit 🧡              | The web app framework                    |
-| **Frontend**     | Svelte + TypeScript       | User interface + validation dashboard    |
-| **Styling**      | Tailwind CSS 🎨           | Modern and responsive UI                 |
-| **Build Tool**   | Vite ⚡                    | Next-generation frontend tooling         |
-| **Package Manager**| pnpm 📦                   | Fast, disk space-efficient package manager|
-| **Automation**   | GitHub Actions ⚙️         | CI/CD builds                             |
+| Layer               | Technology          | Role                                       |
+| ------------------- | ------------------- | ------------------------------------------ |
+| **Framework**       | SvelteKit 🧡        | The web app framework                      |
+| **Frontend**        | Svelte + TypeScript | User interface + validation dashboard      |
+| **Styling**         | Tailwind CSS 🎨     | Modern and responsive UI                   |
+| **Build Tool**      | Vite ⚡             | Next-generation frontend tooling           |
+| **Package Manager** | pnpm 📦             | Fast, disk space-efficient package manager |
+| **Automation**      | GitHub Actions ⚙️   | CI/CD builds                               |
 
 ---
 
@@ -111,12 +111,12 @@ The UI imports functions directly from **`nexus-dsm-toolkit`** (TypeScript).
 Example usage in frontend:
 
 ```ts
-import { parseCSV, convertToJSON } from "nexus-dsm-toolkit";
+import { parseCSV, convertToJSON } from 'nexus-dsm-toolkit';
 
 async function handleFile(file: File) {
-  const parsed = await parseCSV(await file.text());
-  const json = convertToJSON(parsed);
-  console.log("Converted JSON:", json);
+ const parsed = await parseCSV(await file.text());
+ const json = convertToJSON(parsed);
+ console.log('Converted JSON:', json);
 }
 ```
 
@@ -148,4 +148,4 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE).
 
 ---
 
-🔥 *Nexus DSM UI is proudly part of the Nexicore Digitals ecosystem — modular tools for clarity, control, and confidence.*
+🔥 _Nexus DSM UI is proudly part of the Nexicore Digitals ecosystem — modular tools for clarity, control, and confidence._

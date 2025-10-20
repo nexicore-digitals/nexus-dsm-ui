@@ -22,4 +22,4 @@ This document outlines the high-level goals and planned features for Nexus DSM U
 - [ ] **Performance Tuning**: Focus on large dataset performance.
 - [ ] **Accessibility Audit**: Conduct a full accessibility review and implement improvements.
 
-*This roadmap is subject to change. Community feedback and contributions are welcome!*
+_This roadmap is subject to change. Community feedback and contributions are welcome!_

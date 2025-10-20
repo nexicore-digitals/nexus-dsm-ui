@@ -59,16 +59,16 @@ You will need Node.js version 22+ and `pnpm`.
 
 1. Fork and clone the repository.
 
-    ```bash
-    git clone https://github.com/nexicore-digitals/nexus-dsm-ui.git
-    cd nexus-dsm-ui
-    ```
+   ```bash
+   git clone https://github.com/nexicore-digitals/nexus-dsm-ui.git
+   cd nexus-dsm-ui
+   ```
 
 2. Install `pnpm` if you haven't already:
 
-    ```bash
-    npm install -g pnpm
-    ```
+   ```bash
+   npm install -g pnpm
+   ```
 
 3. Install dependencies with `pnpm install`.
 
