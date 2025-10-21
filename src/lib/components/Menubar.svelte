@@ -15,7 +15,7 @@
 			<MenubarTrigger data-state="closed" data-side="left" onclick={() => handleClick(menuItem.id)}
 				>{menuItem.label}</MenubarTrigger
 			>
-			<MenubarContent className="" id={menuItem.id} active={menuItem.active}>
+			<MenubarContent className="" id={menuItem.id}>
 				{#each menuItem.items as subMenuItem, index (index)}
 					<MenubarItem>
 						{#if subMenuItem.type === 'action'}
