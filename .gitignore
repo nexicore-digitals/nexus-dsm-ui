@@ -12,7 +12,7 @@ pnpm-workspace.yaml
 /.svelte-kit
 /build
 /static
-/tmp
+tmp/*
 
 # OS
 .DS_Store

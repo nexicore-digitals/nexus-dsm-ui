@@ -1,7 +1,7 @@
 {
 	"name": "nexus-dsm-ui",
 	"private": true,
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"type": "module",
 	"license": "MIT",
 	"author": "Owen • Nexicore digitals",
@@ -108,11 +108,16 @@
 		"svelte": "^5.39.5",
 		"svelte-check": "^4.3.2",
 		"tailwindcss": "^4.1.13",
-		"typescript": "^5.9.2",
 		"tailwindcss-animate": "^1.0.7",
+		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.44.1",
 		"vite": "^7.1.7",
 		"vitest": "^3.2.4",
 		"vitest-browser-svelte": "^1.1.0"
+	},
+	"dependencies": {
+		"@lucide/svelte": "^0.546.0",
+		"clsx": "^2.1.1",
+		"tailwind-merge": "^3.3.1"
 	}
 }
