@@ -1,21 +1,27 @@
-<script>
+<script lang="ts">
+	import EditorHeader from '$lib/components/EditorHeader.svelte';
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
+	import { activeMenuId, setActiveMenu } from '$lib/stores/menu';
+	function closeAllMenus(
+		e?: MouseEvent & {
+			currentTarget: EventTarget & HTMLDivElement;
+		}
+	) {
+		if ($activeMenuId !== '' && $activeMenuId !== null) {
+			if ((e?.target as HTMLElement)?.tagName === 'BUTTON') return;
+			setActiveMenu('');
+		}
+	}
 </script>
 
-<div class="flex min-h-screen flex-col items-center justify-center p-8">
-	<div class="bg-card text-card-foreground w-full max-w-md rounded-lg border p-6 shadow-lg">
-		<div class="flex flex-col space-y-4">
-			<h1 class="text-2xl font-semibold tracking-tight">Welcome to Nexus DSM UI</h1>
-			<p class="text-muted-foreground">
-				This is a demo page to showcase the theming system. Use the dropdown below to switch between
-				themes.
-			</p>
-
-			<div class="flex items-center space-x-2 pt-4">
-				<button class="btn btn-primary">Primary Button</button>
-				<button class="btn btn-secondary">Secondary Button</button>
-			</div>
-			<ThemeSwitcher />
-		</div>
-	</div>
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div
+	class="flex min-h-screen flex-col"
+	onclick={(e) => closeAllMenus(e)}
+	onkeydown={(e) => {
+		if (e.key === 'Escape') closeAllMenus();
+	}}
+>
+	<EditorHeader />
+	<ThemeSwitcher />
 </div>
