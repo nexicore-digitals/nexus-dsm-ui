@@ -102,6 +102,7 @@
 		"eslint-plugin-svelte": "^3.12.4",
 		"globals": "^16.4.0",
 		"husky": "^9.0.11",
+		"jsdom": "^27.0.1",
 		"lint-staged": "^15.5.2",
 		"matchers": "link:@testing-library/jest-dom/matchers",
 		"playwright": "^1.55.1",
