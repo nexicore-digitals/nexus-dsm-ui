@@ -78,7 +78,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write --cache .",
 		"lint": "prettier --check . && eslint .",
-		"test": "vitest run --passWithNoTests",
+		"test": "vitest run --changed --silent",
 		"test:watch": "vitest --watch"
 	},
 	"lint-staged": {
@@ -93,6 +93,8 @@
 		"@sveltejs/vite-plugin-svelte": "^6.2.0",
 		"@tailwindcss/typography": "^0.5.18",
 		"@tailwindcss/vite": "^4.1.13",
+		"@testing-library/jest-dom": "^6.4.8",
+		"@testing-library/svelte": "^5.2.8",
 		"@types/node": "^22",
 		"@vitest/browser": "^3.2.4",
 		"eslint": "^9.36.0",
@@ -101,6 +103,7 @@
 		"globals": "^16.4.0",
 		"husky": "^9.0.11",
 		"lint-staged": "^15.5.2",
+		"matchers": "link:@testing-library/jest-dom/matchers",
 		"playwright": "^1.55.1",
 		"prettier": "^3.6.2",
 		"prettier-plugin-svelte": "^3.4.0",

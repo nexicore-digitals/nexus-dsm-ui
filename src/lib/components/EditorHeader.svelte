@@ -4,7 +4,7 @@
 	import Menubar from './Menubar.svelte';
 </script>
 
-<div class="editor-header">
+<div class="editor-header" data-testid="editor-header">
 	<LogoContainer />
 	<Menubar />
 </div>
