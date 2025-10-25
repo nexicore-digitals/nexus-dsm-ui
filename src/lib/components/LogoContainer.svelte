@@ -2,7 +2,7 @@
 	import Logo from './Logo.svelte';
 </script>
 
-<div class="mr-4 flex items-center gap-2">
+<div class="mr-4 flex items-center gap-2" data-testid="logo-container">
 	<Logo />
 	<span class="text-sm font-semibold" style="color: var(--color-foreground);">Nexus DSM Studio</span
 	>
