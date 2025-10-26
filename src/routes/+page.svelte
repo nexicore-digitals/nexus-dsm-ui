@@ -1,5 +1,6 @@
 <script lang="ts">
 	import EditorHeader from '$lib/components/EditorHeader.svelte';
+	import StatusBar from '$lib/components/StatusBar.svelte';
 	import ThemeSwitcher from '$lib/components/ThemeSwitcher.svelte';
 	import { activeMenuId, setActiveMenu } from '$lib/stores/menu';
 	function closeAllMenus(
@@ -24,4 +25,5 @@
 >
 	<EditorHeader />
 	<ThemeSwitcher />
+	<StatusBar />
 </div>
