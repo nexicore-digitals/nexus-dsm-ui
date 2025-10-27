@@ -1,0 +1,26 @@
+/* The horizontal bar at the very bottom */
+.status-bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: 24px;
+	padding: 0 10px;
+	background-color: var(--color-statusBar);
+	border-top: 1px solid var(--color-border);
+	background-color: var(--color-statusBar);
+	color: white;
+	height: 22px;
+	display: flex;
+	align-items: center;
+	font-size: 0.8rem;
+	z-index: 1000;
+	bottom: 0;
+	width: 100%;
+}
+
+.status-left,
+.status-right {
+	display: flex;
+	gap: 12px;
+	align-items: center;
+}

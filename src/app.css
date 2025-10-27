@@ -188,25 +188,6 @@ body {
 	filter: grayscale(1);
 }
 
-/* 7. Application Layout Structure (VS Code Inspired Grid) */
-
-/* The main container in +layout.svelte should use this class */
-.app-grid {
-	display: grid;
-	/* Defines the column structure:
-       1. Activity Bar (e.g., 50px)
-       2. Sidebar (e.g., 250px, variable width)
-       3. Main Content Area (1fr) 
-    */
-	grid-template-columns: min-content min-content 1fr;
-	/* Defines the row structure:
-       1. Main Area (1fr) - Contains the Editor Header and the Editor itself
-       2. Status Bar (e.g., 22px) - The bottom bar
-    */
-	grid-template-rows: 1fr min-content;
-	height: 100vh;
-}
-
 .activity-bar {
 	grid-column: 1 / 2;
 	grid-row: 1 / 2;
@@ -216,18 +197,6 @@ body {
 	z-index: 10; /* Ensure it is above the sidebar border */
 }
 
-.sidebar-panel {
-	/* This width needs to be controlled by Svelte state for collapsing */
-	grid-column: 2 / 3;
-	grid-row: 1 / 2;
-	background-color: var(--color-sidebar);
-	border-right: 1px solid var(--color-border);
-	min-width: 0;
-	width: 250px;
-	overflow-y: auto;
-	z-index: 5;
-}
-
 .main-content {
 	grid-column: 3 / 4;
 	grid-row: 1 / 2;
@@ -235,26 +204,6 @@ body {
 	overflow: hidden;
 	display: flex;
 	flex-direction: column; /* To stack tabs/toolbar above the editor area */
-}
-
-/* The horizontal bar at the very bottom */
-.status-bar {
-	grid-column: 1 / -1; /* Spans all columns (Activity, Sidebar, Editor) */
-	grid-row: 2 / 3;
-	border-top: 1px solid var(--color-border);
-	background-color: var(--color-statusBar);
-	color: white;
-	height: 22px;
-	padding: 0 10px;
-	display: flex;
-	align-items: center;
-	font-size: 0.8rem;
-	z-index: 10;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	width: 100%;
 }
 
 /*
