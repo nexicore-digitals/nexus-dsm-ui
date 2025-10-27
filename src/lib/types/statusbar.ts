@@ -4,7 +4,7 @@ export type StatusItemMeta = {
 	id: string;
 	role: 'context' | 'action';
 	label?: string;
-	icon?: Component;
+	icon?: typeof Component;
 	tooltip?: string;
 	onClick?: () => void;
 	priority: number;

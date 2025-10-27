@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Component } from '@lucide/svelte';
 
-	export let icon: Component | null = null;
+	export let icon: typeof Component | null | string = null;
 	export let label: string = '';
 	export let tooltip: string = '';
 	export let onClick: (() => void) | null = null;
@@ -17,7 +17,10 @@
 	onclick={() => onClick?.()}
 	onkeydown={(e) => e.key === 'Enter' && onClick?.()}
 >
-	{#if icon}
+	{#if icon && typeof icon !== 'string'}
+		<svelte:component this={icon} class="status-icon" />
+	{/if}
+	{#if icon && typeof icon === 'string'}
 		<span class="status-icon">{icon}</span>
 	{/if}
 	{#if label}
@@ -29,8 +32,10 @@
 	.status-item {
 		display: inline-flex;
 		align-items: center;
-		gap: 4px;
-		padding: 0 6px;
+		justify-content: center;
+		gap: 4rem;
+		padding: 0.5rem;
+		border-radius: 0.5rem;
 		height: 100%;
 		font-size: 12px;
 		color: var(--status-fg, #ccc);
@@ -42,13 +47,15 @@
 		cursor: default;
 	}
 
+	.status-icon {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 16px;
+		height: 16px;
+	}
 	.status-item:hover {
 		background-color: var(--status-hover-bg, rgba(255, 255, 255, 0.05));
-	}
-
-	.status-icon {
-		display: inline-flex;
-		align-items: center;
 	}
 
 	.status-label {

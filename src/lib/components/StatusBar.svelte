@@ -3,6 +3,7 @@
 	import type { StatusItemMeta } from '$lib/types/statusbar';
 	import { loadCoreStatusItems } from '$lib/utils/status';
 	import StatusItem from './ui/statusbar/StatusItem.svelte';
+	import '$lib/styles/statusbar.css';
 
 	let contextItems: StatusItemMeta[] = [];
 	let actionItems: StatusItemMeta[] = [];
