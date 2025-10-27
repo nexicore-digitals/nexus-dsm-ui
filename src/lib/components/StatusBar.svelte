@@ -1,9 +1,26 @@
 <script lang="ts">
-	// In the future, you could have props to control status items dynamically.
+	import { statusRegistry } from '$lib/stores/status';
+	import type { StatusItemMeta } from '$lib/types/statusbar';
+	import { loadCoreStatusItems } from '$lib/utils/status';
+	import StatusItem from './ui/statusbar/StatusItem.svelte';
+
+	let contextItems: StatusItemMeta[] = [];
+	let actionItems: StatusItemMeta[] = [];
+
+	$: contextItems = $statusRegistry.context;
+	$: actionItems = $statusRegistry.action;
+	loadCoreStatusItems();
 </script>
 
 <div class="status-bar" data-testid="statusbar">
-	<div class="-m-1 flex cursor-pointer items-center gap-1 rounded p-1 hover:bg-white/10">
-		<span>main</span>
+	<div class="status-left" id="Contextual indicators">
+		{#each contextItems as item (item.id)}
+			<StatusItem {...item} />
+		{/each}
+	</div>
+	<div class="status-right" id="Interactive tools">
+		{#each actionItems as item (item.id)}
+			<StatusItem {...item} />
+		{/each}
 	</div>
 </div>
