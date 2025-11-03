@@ -1,0 +1,45 @@
+/* Background Color Utilities */
+
+.bg-background {
+	background-color: var(--color-background);
+}
+
+.bg-editor {
+	background-color: var(--color-editor);
+}
+
+.bg-sidebar {
+	background-color: var(--color-sidebar);
+}
+
+.bg-activityBar {
+	background-color: var(--color-activityBar);
+}
+
+.bg-statusBar {
+	background-color: var(--color-statusBar);
+}
+
+.bg-primary {
+	background-color: var(--color-primary);
+}
+
+.bg-secondary {
+	background-color: var(--color-secondary);
+}
+
+.bg-accent {
+	background-color: var(--color-accent);
+}
+
+.bg-tabActive {
+	background-color: var(--color-tabActive);
+}
+
+.bg-tabInactive {
+	background-color: var(--color-tabInactive);
+}
+
+.bg-input {
+	background-color: var(--color-input);
+}

@@ -5,6 +5,7 @@
 	export let label: string = '';
 	export let tooltip: string = '';
 	export let onClick: (() => void) | null = null;
+	export let isActive = false;
 </script>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
@@ -16,6 +17,7 @@
 	title={tooltip}
 	onclick={() => onClick?.()}
 	onkeydown={(e) => e.key === 'Enter' && onClick?.()}
+	class:active={isActive}
 >
 	{#if icon && typeof icon !== 'string'}
 		<svelte:component this={icon} class="status-icon" />
@@ -56,6 +58,10 @@
 	}
 	.status-item:hover {
 		background-color: var(--status-hover-bg, rgba(255, 255, 255, 0.05));
+	}
+
+	.status-item.active {
+		background-color: var(--status-hover-bg, rgba(255, 255, 255, 0.15));
 	}
 
 	.status-label {
