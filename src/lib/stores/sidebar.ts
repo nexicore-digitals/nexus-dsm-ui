@@ -11,3 +11,6 @@ export const sortedSidebarItems = derived(sidebarItems, ($items) => {
 export const topSidebarItems = derived(sortedSidebarItems, ($items) => $items.slice(0, 12));
 export const overflowSidebarItems = derived(sortedSidebarItems, ($items) => $items.slice(12));
 export const bottomSidebarItem = writable<SidebarItemMeta[] | null>(null); // e.g. account/settings
+
+// A derived store that is true if any sidebar item is active.
+export const isSidebarOpen = derived(activeSidebarId, ($activeSidebarId) => !!$activeSidebarId);

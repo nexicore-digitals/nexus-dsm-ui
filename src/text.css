@@ -1,0 +1,17 @@
+/* Text Color Utilities */
+
+.text-foreground {
+	color: var(--color-foreground);
+}
+
+.text-primary {
+	color: var(--color-primary);
+}
+
+.text-muted {
+	color: var(--color-muted);
+}
+
+.text-accent {
+	color: var(--color-accent);
+}
